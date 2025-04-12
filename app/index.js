@@ -9,8 +9,12 @@ import * as util from "../common/utils";
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
 
+const DIGIT_SMALL  = "26x51"
+const DIGIT_MEDIUM = "36x75"
+const DIGIT_LARGE  = "46x96"
+
 let settings = loadSettings();
-//applyTheme(settings.background, settings.foreground);
+applyTheme(settings.background, settings.foreground);
 
 // TIME
 let separator = document.getElementById("separator");
@@ -67,18 +71,19 @@ clock.ontick = evt => {
 }
 
 // Apply theme colors to elements
-//function applyTheme(background, foreground) {
+function applyTheme(background, foreground) {
 //  let items = document.getElementsByClassName("background");
 //  items.forEach(function(item) {
 //    item.style.fill = background;
 //  });
-//  let items = document.getElementsByClassName("foreground");
-//  items.forEach(function(item) {
-//    item.style.fill = foreground;
-//  });
+  console.log("Aplying Background=" + background + ", Foreground=" + foreground)
+  let elements = document.getElementsByClassName("decals");
+  elements.forEach(function(element) {
+    element.style.fill = foreground;
+  });
 //  settings.background = background;
-//  settings.foreground = foreground;
-//}
+  settings.foreground = foreground;
+}
 
 // Blink time separator (0 = off, 1 = on)
 function setSeparator(val) {
@@ -92,21 +97,21 @@ function setPM(val) {
 
 function setHours(val) {
   if (val > 9) {
-    drawDigit(Math.floor(val / 10), hours1, "44x94");
+    drawDigit(Math.floor(val / 10), hours1, DIGIT_LARGE);
   } else {
-    drawDigit("Blank", hours1, "44x94");
+    drawDigit("Blank", hours1, DIGIT_LARGE);
   }
-  drawDigit(Math.floor(val % 10), hours2, "44x94");
+  drawDigit(Math.floor(val % 10), hours2, DIGIT_LARGE);
 }
 
 function setMins(val) {
-  drawDigit(Math.floor(val / 10), mins1, "44x94");
-  drawDigit(Math.floor(val % 10), mins2, "44x94");
+  drawDigit(Math.floor(val / 10), mins1, DIGIT_LARGE);
+  drawDigit(Math.floor(val % 10), mins2, DIGIT_LARGE);
 }
 
 function setSecs(val) {
-  drawDigit(Math.floor(val / 10), secs1, "24x49");
-  drawDigit(Math.floor(val % 10), secs2, "24x49");
+  drawDigit(Math.floor(val / 10), secs1, DIGIT_SMALL);
+  drawDigit(Math.floor(val % 10), secs2, DIGIT_SMALL);
 }
 
 //function setDate(val) {
@@ -129,7 +134,7 @@ function getDayImg(index) {
 
 // Listen for the onmessage event
 messaging.peerSocket.onmessage = evt => {
-//  applyTheme(evt.data.background, evt.data.foreground);
+  applyTheme(evt.data.background, evt.data.foreground);
 }
 
 // Register for the unload event
@@ -142,7 +147,7 @@ function loadSettings() {
     // Defaults
     return {
       background: "#000000",
-      foreground: "#FFFFFF"
+      foreground: "#3380cc"
     }
   }
 }
