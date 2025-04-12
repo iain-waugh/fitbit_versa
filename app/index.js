@@ -76,7 +76,7 @@ function applyTheme(background, foreground) {
 //  items.forEach(function(item) {
 //    item.style.fill = background;
 //  });
-  console.log("Aplying Background=" + background + ", Foreground=" + foreground)
+//  console.log("Aplying Background=" + background + ", Foreground=" + foreground)
   let elements = document.getElementsByClassName("decals");
   elements.forEach(function(element) {
     element.style.fill = foreground;
