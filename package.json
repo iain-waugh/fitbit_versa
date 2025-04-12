@@ -1,0 +1,18 @@
+{
+  "fitbit": {
+    "appUUID": "a41cbb78-c529-4cb5-96c3-07e3f4371d71",
+    "appType": "clockface",
+    "appDisplayName": "Classic LCD (Basic)",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Classic LCD (Basic)"
+      }
+    }
+  }
+}
